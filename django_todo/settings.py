@@ -27,7 +27,7 @@ SECRET_KEY = '%97g=5w7w#(jjh@^$b@-lg1be0o-8r59x&n00wh81&lcdn)zru'
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1',
-                'https://simple-django-todo-rian.herokuapp.com/']
+                os.environ.get('HOSTNAME')]
 
 
 # Application definition
@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'django_todo.wsgi.application'
 # DATABASE = {'default': dj_database_url.parse('postgres://iopaqnzajwfigq:a1ef69b6d27732802f160a2cfbb976c150e9eb30656d67e298f9678b3264f492@ec2-54-247-79-178.eu-west-1.compute.amazonaws.com:5432/d82sr5tg6ugvsm')}
 if "DATABASE_URL" in os.environ:
     DATABASES = {
-        'default': dj_database_url.parse(os.getenv('postgres://iopaqnzajwfigq:a1ef69b6d27732802f160a2cfbb976c150e9eb30656d67e298f9678b3264f492@ec2-54-247-79-178.eu-west-1.compute.amazonaws.com:5432/d82sr5tg6ugvsm'))
+        'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
     }
 else:
     print("Postgres URL not found, using sqlite instead")
