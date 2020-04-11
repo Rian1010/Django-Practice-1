@@ -205,3 +205,6 @@ else:
 - git add Procfile
 - git commit -m "Add Procfile"
 - git push origin master && git push heroku master
+
+### ALLOWED_HOSTS
+- Add the Heroku URL in the array of ALLOWED_HOSTS in settings.py and push it onto Github and Heroku again
