@@ -208,3 +208,23 @@ else:
 
 ### ALLOWED_HOSTS
 - Add the Heroku URL in the array of ALLOWED_HOSTS in settings.py and push it onto Github and Heroku again
+- Change ALLOWED_HOSTS to:
+```python
+ALLOWED_HOSTS = ['localhost', '127.0.0.1',
+                os.environ.get('HOSTNAME')]
+```
+- Change DATABASE to:
+```python
+if "DATABASE_URL" in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
+    }
+else:
+    print("Postgres URL not found, using sqlite instead")
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+```
