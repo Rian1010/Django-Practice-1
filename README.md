@@ -1,6 +1,7 @@
 # First Django Practice
 
 ## Acivating a Virtual Environment
+- python3 -m venv myvenv
 - virtualenv venv
 - virtualenv venv --system-site-packages
 - source venv/bin/activate
@@ -186,3 +187,21 @@ else:
     }
 ```
 - Add this in settings.py: import dj_database_url
+
+## Deployment Git and Heroku
+### Github
+- Do usual Github deployment
+### Heroku
+- git push heroku master
+- This fails
+- To turn off JS and CSS, as they are not dealt with at this point: heroku config:set DISABLE_COLLECTSTATIC=1
+- git push heroku master
+
+### Procfile 
+- echo web: gunicorn django_todo.wsgi:application > Procfile
+
+### Deploy
+- git status
+- git add Procfile
+- git commit -m "Add Procfile"
+- git push origin master && git push heroku master
