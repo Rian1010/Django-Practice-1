@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -74,13 +75,26 @@ WSGI_APPLICATION = 'django_todo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
+# DATABASE = {'default': dj_database_url.parse('postgres://iopaqnzajwfigq:a1ef69b6d27732802f160a2cfbb976c150e9eb30656d67e298f9678b3264f492@ec2-54-247-79-178.eu-west-1.compute.amazonaws.com:5432/d82sr5tg6ugvsm')}
+if "DATABASE_URL" in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.getenv('postgres://iopaqnzajwfigq:a1ef69b6d27732802f160a2cfbb976c150e9eb30656d67e298f9678b3264f492@ec2-54-247-79-178.eu-west-1.compute.amazonaws.com:5432/d82sr5tg6ugvsm'))
+    }
+else:
+    print("Postgres URL not found, using sqlite instead")
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
