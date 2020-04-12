@@ -146,9 +146,9 @@ def test_item_as_a_string(self):
 - sudo pip3 install gunicorn
 
 ## psycopg (this will allow us to connect to a PostgreSQL database so instead of using MySQL or SQLite for this)
-- sudo pip3 install psycopg2~=2.7.3.1
+- sudo pip3 install psycopg2-binary
 - the reason for this is that Postgres is very easy to setup on Heroku to really encourage it we can get it up and running with a single command 
-- pip3 freeze > requirements.txt
+- pip3 freeze --local > requirements.txt
 - If not included already, manually add to the requirements.txt file: Django==1.11.24
 - If not included already, manually add to the requirements.txt file: pytz==2019.3 
 
@@ -269,3 +269,5 @@ else:
     }
 ```
 - export DEVELOPMENT=1
+- Get a secret key from https://miniwebtool.com/django-secret-key-generator/ or click [here][https://miniwebtool.com/django-secret-key-generator/]
+- heroku config:set SECRET_KEY=""
