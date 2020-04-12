@@ -148,7 +148,7 @@ def test_item_as_a_string(self):
 ## psycopg (this will allow us to connect to a PostgreSQL database so instead of using MySQL or SQLite for this)
 - sudo pip3 install psycopg2~=2.7.3.1
 - the reason for this is that Postgres is very easy to setup on Heroku to really encourage it we can get it up and running with a single command 
-- pip3 freeze --local > requirements.txt
+- pip3 freeze > requirements.txt
 - If not included already, manually add to the requirements.txt file: Django==1.11.24
 - If not included already, manually add to the requirements.txt file: pytz==2019.3 
 
@@ -226,5 +226,45 @@ else:
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
+    }
+```
+
+### Install psycopg2-binary
+- pip3 install psycopg2-binary
+- pip3 freeze > requirements.txt
+
+## For The Database Errors, Try Troubleshooting With These IN THE VIRTUAL ENVIRONMENT
+- pip list
+- pip3 freeze --local > requirements.txt
+- sudo pip3 install dj_database_url
+- sudo pip3 install psycopg2-binary
+- python3 manage.py shell
+- >>> from django.conf import settings
+- >>> print(settings.DATABASES)
+- python3 manage.py showmigrations
+- python3 manage.py migrate
+- python3 manage.py showmigrations
+
+## Development Environment
+- Add this to the top of settings.py
+```python
+if os.environ.get('DEVELOPMENT'):
+    development = True
+else:
+    development = False
+```
+- Change the DATABASES to this:
+```python
+if development:
+    print("Postgres URL not found, using sqlite instead")
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+else:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
 ```
