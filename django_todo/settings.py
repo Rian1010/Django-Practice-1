@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import dj_database_url
 
+if os.environ.get('DEVELOPMENT'):
+    development = True
+else:
+    development = False
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -24,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '%97g=5w7w#(jjh@^$b@-lg1be0o-8r59x&n00wh81&lcdn)zru'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = development
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1',
                 os.environ.get('HOSTNAME')]
