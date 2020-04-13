@@ -271,3 +271,13 @@ else:
 - export DEVELOPMENT=1
 - Get a secret key from https://miniwebtool.com/django-secret-key-generator/ or click [here][https://miniwebtool.com/django-secret-key-generator/]
 - heroku config:set SECRET_KEY=""
+
+- In the file settings.json in the .vscode folder, have the following:
+```json
+{
+    "python.pythonPath": "myvenv/bin/python3",
+    "run": "python3 manage.py runserver",
+    "DEVELOPMENT": 1,
+    "SECRET_KEY": "ng8bdtxk0%+5v3lih%w4b(0theatooy7_%tbcj@qyr9lr_cir&"
+}
+```
