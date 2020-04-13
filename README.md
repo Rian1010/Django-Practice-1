@@ -25,8 +25,8 @@
 - python manage.py migrate
 
 ## Get Aliases (Not important, so it is okay, if it does not work)
-- nano ~/.bashrc
-- alias run = "python3 manage.py runserver"
+- nano ~/.bashrc (to get to the bashrc on VSCode, but for this part use settings.json on VSCodeas shown at the very bottom of the README.md file)
+- alias run = "python3 manage.py runserver" (does not apply for vscode)
 - Then press "Ctrl + X" to save, "Y" for yes, and then press the <enter> button
 - Run the page using 'run' in the terminal
 
@@ -268,11 +268,11 @@ else:
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
 ```
-- export DEVELOPMENT=1
+- export DEVELOPMENT=1 (does not apply for vscode)
 - Get a secret key from https://miniwebtool.com/django-secret-key-generator/ or click [here][https://miniwebtool.com/django-secret-key-generator/]
 - heroku config:set SECRET_KEY=""
 
-- In the file settings.json in the .vscode folder, have the following:
+- (VSCode) In the file settings.json in the .vscode folder, have the following and take it out of nano ~/.bashrc:
 ```json
 {
     "python.pythonPath": "myvenv/bin/python3",
