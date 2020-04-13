@@ -239,8 +239,8 @@ else:
 - sudo pip3 install dj_database_url
 - sudo pip3 install psycopg2-binary
 - python3 manage.py shell
-- >>> from django.conf import settings
-- >>> print(settings.DATABASES)
+- > from django.conf import settings
+- > print(settings.DATABASES)
 - python3 manage.py showmigrations
 - python3 manage.py migrate
 - python3 manage.py showmigrations
