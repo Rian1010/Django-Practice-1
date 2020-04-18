@@ -18,6 +18,7 @@
 ## Starting Off With Django
 - sudo pip3 install django==1.11.24
 - django-admin startproject django_todo .
+- django-admin startapp accounts
 - python3 manage.py runserver
 
 ## If Migration Is Required:
